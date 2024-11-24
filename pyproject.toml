@@ -1,0 +1,60 @@
+[tool.poetry]
+name = "agenda-maker"
+version = "0.1.0"
+description = ""
+authors = ["jumtras"]
+license = "Apache-2.0"
+readme = "README.md"
+
+[tool.poetry.dependencies]
+python = "^3.10"
+whisperx = {git = "https://github.com/m-bain/whisperx.git",rev = "8c4a21b66d2169c18ec7f76cbf9653b7a16c5169"}
+faster-whisper = "^0.7.1"
+ffmpeg-python = "^0.2.0"
+pandas = "^2.1.0"
+nltk = "^3.8.1"
+numba = "^0.57.1"
+pyannote-audio = {git = "https://github.com/pyannote/pyannote-audio.git",rev = "2af703daa2f89434308c2e55ce95a496e8723769"}
+transformers = "^4.32.1"
+janome = "^0.5.0"
+wheel = "^0.41.2"
+setuptools = "^68.1.2"
+gradio = "^3.41.2"
+numpy = "^1.24"
+sentence-transformers = "^2.2.2"
+torch = {version = "^2.0.1+cu117", source = "torch_cu117"}
+torchvision = {version = "^0.15.2+cu117", source = "torch_cu117"}
+torchaudio = {version = "^2.0.2+cu117", source = "torch_cu117"}
+
+[[tool.poetry.source]]
+name = "torch_cu117"
+url = "https://download.pytorch.org/whl/cu117"
+priority = "explicit"
+
+
+
+[tool.poetry.group.dev.dependencies]
+black = "^23.7.0"
+isort = "^5.12.0"
+mypy = "^1.5.1"
+
+[build-system]
+requires = ["poetry-core"]
+build-backend = "poetry.core.masonry.api"
+
+
+[tool.isort]
+include_trailing_comma = true
+multi_line_output = 3
+line_length = 130
+profile = "black"
+known_first_party = "agenda_maker/"
+
+[tool.mypy]
+files = [
+    "agenda_maker",
+]
+ignore_missing_imports = true
+
+[tool.black]
+line-length=130

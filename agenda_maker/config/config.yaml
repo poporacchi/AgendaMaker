@@ -1,0 +1,73 @@
+
+# 実行するタスク設定
+tasks:
+  is_wav_preprocess: True
+  is_transcript: True
+  is_segmentate: True
+  is_summarize: True
+
+# 共通部分のパラメータ
+common:
+  seed: 42
+
+output:
+  output_dir_base: result
+  output_dir:
+  path_segmented_file: ${output.output_dir}/segmented.csv
+  path_summarized_file: ${output.output_dir}/summarized.csv
+  path_whisperx_file: ${output.output_dir}/whisperx.csv
+  path_seg_word_file: ${output.output_dir}/seg_word.csv
+  path_agenda_file: ${output.output_dir}/agenda
+
+
+preprocess:
+  cut_time:
+    start_time: 0 # 音声データの初めてn秒カット
+    end_time: 0 # 音声データの終わりn秒カット
+  silence_cut:
+    min_silence_len: 300 #n秒以上無音なら分割
+    silence_thresh: -60 #ndBFS以下で無音と判定
+    keep_silence: 50 #分割後Nmsは無音を残す
+  
+model: 
+  # 文章分割のパラメータ
+  # sementic segmentation のパラメータ
+  segmentation:
+    max_segment_text: 1900 # 1セグメントの最大文字数
+    min_segment_text: 300 # 1セグメントの最小文字数
+    th_segment_num: 4 # segmentationを止める閾値セグメント数
+    semantic_segmentation:
+      model_type: "pkshatech/GLuCoSE-base-ja" # SentenceTransformerのモデルタイプ
+      threshold: 0.6
+    # text tillingのパラメータ
+    texttiling:
+      w: 10 #Pseudosentence size
+      k: 5 #Size (in sentences) of the block used in the block comparison method
+
+  summarization:
+    model_path: ELYZA-japanese-Llama-2-7b-fast-instruct-q4_0.gguf
+    is_gpu_compile: True #llama.cppでcublasを使っているかどうか
+    n_ctx: 2048
+    n_gpu_layers: 100
+    params:
+      temperature: 0.5
+      top_p: 0.3
+      top_k: 40
+      repeat_penalty: 1.1
+      max_tokens: 2048
+      stop:
+        - "ASSISTANT:"
+        - "USER:"
+        - "SYSTEM:"
+
+
+  whisperx:
+  # 文字起こしのパラメータ
+    whisper:
+      model_type: large-v2
+      compute_type: float16
+      batch_size: 1 # 1batch 5gb位
+    # 話者分離のパラメータ
+    diarization:
+      min_speakers: 1 # 発話している最小人数
+      max_speakers: 4 # 発話している最大人数
