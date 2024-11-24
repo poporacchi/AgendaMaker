@@ -1,0 +1,17 @@
+# pack-refs with: peeled fully-peeled sorted 
+21b11a3e4986e2e7df1d590c06639bb984d218a4 refs/heads/dev
+a77807e6d33003660525bc7ea5441c63b86589e2 refs/heads/feature/dash_app
+8b54fceb684c2bc8c17ad968ebe02865ad214654 refs/heads/master
+fba1f887a9288b7e83bb3d38d14ee20aed2c5ffb refs/pull/1/head
+dfcead297be595b8f7d39e1dc9f447921dd71ed2 refs/pull/2/head
+edea1918666e1c8a9a71c28864414eb8409058d0 refs/pull/3/head
+bd78dd843f6f275c7f70fb7975ae7689a51513d9 refs/pull/4/head
+64658e732f786479b383124f609f9105dde00a98 refs/pull/5/head
+20981d7df71c071567c447ca49de651bfae07b06 refs/pull/6/head
+13403ada9eef555a22c2e48c30abf363b158f6ee refs/pull/7/head
+572d0cc54a9f03924b440d8a98bbc00b4b4e5d30 refs/pull/8/head
+7e30056f8a6cefda4496eb5dfd54ee081802abdd refs/pull/9/head
+1d8c1d242206a89536974cf00bfdcbeb6c46819a refs/tags/v0.1.0
+^9c6c1ac5e5e6687cd7d0a55bacde165eb3b13309
+8dbaff6e1bb8fc723a27005c545afe9986f66c4d refs/tags/v1.0.0
+^8b54fceb684c2bc8c17ad968ebe02865ad214654
